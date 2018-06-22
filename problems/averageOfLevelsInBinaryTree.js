@@ -53,3 +53,41 @@ function average(node, i, sum, count) {
   average(node.left, i + 1, sum, count);
   average(node.right, i + 1, sum, count);
 }
+
+// BFS Solution
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var averageOfLevels = function(root) {
+  let res = [];
+  let queue = [root];
+
+  while(queue.length !== 0) {
+    let sum = 0, count = 0;
+    let children = [];
+    while(queue.length !== 0) {
+      let node = queue.shift();
+      sum += node.val;
+      count++;
+      if (node.left !== null) {
+        children.push(node.left);
+      }
+      if (node.right !== null) {
+        children.push(node.right);
+      }
+    }
+
+    queue = children;
+    res.push(sum / count);
+  }
+
+  return res;
+};
