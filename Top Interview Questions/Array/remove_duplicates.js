@@ -33,24 +33,24 @@ int len = removeDuplicates(nums);
 for (int i = 0; i < len; i++) {
     print(nums[i]);
 }
- * 
+ *
  * @param {number[]} nums
  * @return {number}
- */
-var removeDuplicates = function(nums) {
+ */                                     // [0,1,2,3,4,5,6,7,8,9]
+var removeDuplicates = function(nums) { // [0,0,1,1,1,2,2,3,3,3]
     if (nums.length <= 1) {
-        return nums.length
+        return nums.length;
     }
-    
-    let j = 0; 
-    for (let i = 0; i < nums.length - 1; i++) {
-        if (nums[i] != nums[i + 1]) {
-            nums[j] = nums[i];
-            j++;
+
+    let j = 0;
+    for (let i = 0; i < nums.length - 1; i++) { // i = 0, 1, 2, 3, 4, 5, 6, 7, 8
+        if (nums[i] !== nums[i + 1]) { // 0 === 0, 0 !== 1; 1 === 1, 1 == 1; 1 !== 2, 2 !== 3
+            nums[j] = nums[i]; // nums[0] = 0; // nums[1] = 1 // nums[2] = 2
+            j++; // 1; // 2; 3,
         }
     }
-    
-    nums[j] = nums[nums.length - 1];
-    j++;
+
+    nums[j] = nums[nums.length - 1]; // nums[3] = 3
+    j++; // 4
     return j;
 };
