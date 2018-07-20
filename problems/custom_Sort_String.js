@@ -27,7 +27,7 @@ S and T consist of lowercase letters only.
  * @return {string}
  */
 var customSortString = function(S, T) {
-    let alphabet = {}
+    let alphabet = {};
 
     for (let j = 0; j < S.length; j++) {
         let char = S[j];
@@ -41,13 +41,13 @@ var customSortString = function(S, T) {
         if (alphabet[char] >= 0) {
             alphabet[char] += 1;
         } else {
-            rest += char
+            rest += char;
         }
     }
 
-    let result = ""
+    let result = "";
     for (let i = 0; i < S.length; i++) {
-        result += S[i].repeat(alphabet[S[i]])
+        result += S[i].repeat(alphabet[S[i]]);
     }
     result += rest;
 
