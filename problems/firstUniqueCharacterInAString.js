@@ -39,3 +39,21 @@ var firstUniqChar = function(s) {
 
     return -1;
 };
+
+var firstUniqChar = function(s) {
+  let letters = "abcdefghijiklmnopqrstuvwxyz"
+  let res = s.length; 
+  for(let c of letters) {
+      let idx = s.indexOf(c);
+      if (idx !== -1 && idx === s.lastIndexOf(c) && idx < res) {
+          res = idx;
+      }
+  }
+  
+  return res === s.length ? -1 : res;
+};
+
+/*
+Notice above how there is 2n above us. The other result is 52n. 
+It's faster in leetcode because we will only go through the alphabet. 
+*/
