@@ -1,6 +1,8 @@
 /*S and T are strings composed of lowercase letters. In S, no letter occurs more than once.
 
-S was sorted in some custom order previously. We want to permute the characters of T so that they match the order that S was sorted. More specifically, if x occurs before y in S, then x should occur before y in the returned string.
+S was sorted in some custom order previously. We want to permute the characters of 
+T so that they match the order that S was sorted. More specifically, 
+if x occurs before y in S, then x should occur before y in the returned string.
 
 Return any permutation of T (as a string) that satisfies this property.
 
@@ -27,29 +29,29 @@ S and T consist of lowercase letters only.
  * @return {string}
  */
 var customSortString = function(S, T) {
-    let alphabet = {};
+    let alpha = {};
+    let rest = "";
+    let result = "";
 
-    for (let j = 0; j < S.length; j++) {
-        let char = S[j];
-        alphabet[char] = 0;
+    for (let i = 0; i < S.length; i++) {
+        let letter = S[i];
+        alpha[letter] = "";
     }
 
-    let rest = "";
     for (let i = 0; i < T.length; i++) {
-        let char = T[i];
-
-        if (alphabet[char] >= 0) {
-            alphabet[char] += 1;
+        let letter = T[i];
+        if (alpha[letter] !== undefined) {
+            alpha[letter] += letter;
         } else {
-            rest += char;
+            rest += letter;
         }
     }
 
-    let result = "";
     for (let i = 0; i < S.length; i++) {
-        result += S[i].repeat(alphabet[S[i]]);
+        let letter = S[i];
+        result += alpha[letter];
     }
-    result += rest;
 
-    return result;
-};
+    return result += rest
+}
+

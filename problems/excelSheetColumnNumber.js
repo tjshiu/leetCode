@@ -41,3 +41,18 @@ var titleToNumber = function(s) {
 
     return result;
 };
+
+// other version - should test runtime!!! 
+var titleToNumber = function(s) {
+    let result = 0;
+
+    for (let i = 0; i < s.length; i++) {
+        let letter = s[i];
+        let num = letter.charCodeAt() - 64;
+        let power = s.length - i - 1;
+
+        result += num * 26**power
+    }
+
+    return result;
+}

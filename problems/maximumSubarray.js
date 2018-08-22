@@ -1,5 +1,7 @@
 /*
-Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+Given an integer array nums, find the contiguous subarray 
+(containing at least one number) which has the largest sum and 
+return its sum.
 
 Example:
 
@@ -22,7 +24,7 @@ var maxSubArray = function(nums) {
     for (let i = 1; i < nums.length; i++) {
         let num = nums[i]
         if (curr < 0) {
-            curr = num;
+            curr = num; // pay attention to here, we do not reset to 0;
         } else {
             curr += num;
         }
