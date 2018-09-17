@@ -50,3 +50,39 @@ var findKth = function(arr1, start1, arr2, start2, k) {
         return findKth(arr1, start1, arr2, start2 + mid, k - mid)
     }
 }
+
+
+
+
+// Another way to solve the problem using a window
+var findMedianSortedArrays = function(nums1, nums2) {
+    if (nums1.length > nums2.length) {
+        return findMedianSortedArrays(nums2, nums1);
+    }
+
+    let length = nums1.length + nums2.length;
+    let startXPartition = 0;
+    let endXPartition = nums1.length
+
+    while(endXPartition >= startXPartition) {
+        let xPartition = Math.floor((startXPartition + endXPartition) / 2);
+        let yPartition = Math.floor((length + 1) / 2) - xPartition;
+
+        let xLeft = xPartition <= 0 ? -Infinity : nums1[xPartition - 1];
+        let yLeft = yPartition <= 0 ? -Infinity : nums2[yPartition - 1];
+        let xRight = xPartition >= nums1.length ? Infinity : nums1[xPartition];
+        let yRight = yPartition >= nums2.length ? Infinity : nums2[yPartition];
+
+        if (xLeft <= yRight && yLeft <= xRight) {
+            if (length % 2 !== 0) {
+                return Math.max(xLeft, yLeft);
+            } else {
+                return (Math.max(yLeft, xLeft) + Math.min(yRight, xRight)) / 2
+            }
+        } else if (yLeft > xRight) {
+            startXPartition = xPartition + 1
+        } else {
+            endXPartition = xPartition - 1
+        }
+    }
+}
