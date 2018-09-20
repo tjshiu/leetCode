@@ -22,15 +22,10 @@ Output: true
  * @return {boolean}
  */
 var containsDuplicate = function(nums) {
-    let dups = {};
-
+    let map = new Map();
     for (let i = 0; i < nums.length; i++) {
-        if (dups[nums[i]] !== undefined) {
-            return true;
-        } else {
-            dups[nums[i]] = 1;
-        }
+        if (map.has(nums[i])) return true;
+        map.set(nums[i], true);
     }
-
     return false;
 };
