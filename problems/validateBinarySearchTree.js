@@ -36,7 +36,7 @@ Explanation: The input is: [5,1,4,null,null,3,6]. The root node's value
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isValidBST = function(root) { 
+var isValidBST = function(root) {
     var arr = []
     function inorder(root) {
       if (!root) return;
@@ -50,3 +50,30 @@ var isValidBST = function(root) {
     }
     return true
   };
+
+  const isValidBST = root => {
+    const helper = (node, lo, hi) => {
+      if (!node) return true;
+      return (lo < node.val && node.val < hi) &&
+        helper(node.left, lo, node.val) &&
+        helper(node.right, node.val, hi);
+    }
+    return helper(root, -Infinity, Infinity);
+  };
+
+  var isValidBST = function(root) {
+    let stack = [];
+    let pre = null;
+    let curr = root;
+    while (curr || stack.length > 0) {
+        while (curr) {
+            stack.push(curr);
+            curr = curr.left;
+        }
+        curr = stack.pop();
+        if (pre && pre.val >= curr.val) return false;
+        pre = curr;
+        curr = curr.right;
+    }
+    return true;
+};
